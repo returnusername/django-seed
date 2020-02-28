@@ -54,3 +54,7 @@ class Provider(object):
     def binary(self):
         word = self.faker.text(512)
         return str.encode(str(word))
+
+    def array_field(self):
+        array = self.faker.words(random.randint(1, 10))
+        return array

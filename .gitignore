@@ -31,5 +31,6 @@ var/
 *.egg
 
 env/
+venv/
 .idea
 .vscode

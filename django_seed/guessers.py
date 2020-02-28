@@ -1,4 +1,5 @@
 from django.db.models import *
+from django.contrib.postgres.fields import *
 from django.conf import settings
 from django.utils import timezone
 
@@ -106,4 +107,9 @@ class FieldTypeGuesser(object):
             return lambda x: _timezone_format(faker.date_time())
         if isinstance(field, DateField): return lambda x: faker.date()
         if isinstance(field, TimeField): return lambda x: faker.time()
+
+        # PostgreSQL specific model fields
+        if isinstance(field, ArrayField):
+            return lambda x: provider.array_field()
+
         raise AttributeError(field)
